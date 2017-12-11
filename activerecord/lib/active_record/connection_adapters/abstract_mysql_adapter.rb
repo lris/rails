@@ -86,7 +86,7 @@ module ActiveRecord
 
       def mariadb? # :nodoc:
         p :FULL_VERSION => full_version
-        /mariadb/i.match?(full_version)
+        full_version =~ /mariadb/i
       end
 
       # Returns true, since this connection adapter supports migrations.
