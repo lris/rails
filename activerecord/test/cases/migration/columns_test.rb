@@ -141,6 +141,10 @@ module ActiveRecord
       def test_remove_column_with_multi_column_index
         # MariaDB starting with 10.2.8
         # Dropping a column that is part of a multi-column UNIQUE constraint is not permitted.
+        p :DEBUG_ADAPTER => current_adapter?(:Mysql2Adapter)
+        p :DEBUG_CONN => connection.mariadb?
+        p :DEBUG_VERS => connection.version
+        p :DEBUG_STATEMENT => current_adapter?(:Mysql2Adapter) && connection.mariadb? && connection.version >= "10.2.8"
         skip if current_adapter?(:Mysql2Adapter) && connection.mariadb? && connection.version >= "10.2.8"
 
         add_column "test_models", :hat_size, :integer
